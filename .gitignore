@@ -1,6 +1,6 @@
 # Ignore
-lab1/
-
+lab1/*
+simulation/*
 
 # C
 # Object files
