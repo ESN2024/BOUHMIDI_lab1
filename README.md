@@ -7,3 +7,4 @@ Pour mettre en œuvre le 'LED chaser' décrit dans le Lab1, nous aurons besoin d
 ## Chenillard
 ![IMG_4602](https://github.com/ESN2024/BOUHMIDI_lab1/assets/144927751/004a02d7-7741-4a00-90f4-10ebc6e0e8db)
 ## Chenillard avec interruptions par bouttons poussoir et control de vitesse avec switch
+![IMG_4606 (1)](https://github.com/ESN2024/BOUHMIDI_lab1/assets/144927751/3d4f0ea9-49bf-4612-8a00-8c2b9f8f424f)
