@@ -139,10 +139,10 @@ ACDS_VERSION := 18.1
 # Define path to the application ELF. 
 # It may be used by the makefile fragments so is defined before including them. 
 # 
-ELF := bouhmidilab1.elf
+ELF := bouhmidilab1_2.elf
 
 # Paths to C, C++, and assembly source files.
-C_SRCS += ../../main.c
+C_SRCS += ../../interrupt.c
 CXX_SRCS :=
 ASM_SRCS :=
 
