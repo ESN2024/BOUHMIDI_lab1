@@ -14,7 +14,7 @@ end entity toplevel;
 architecture rtl of toplevel is
 
 	component lab1 is
-		port (
+		port ( 
 			clk_clk       : in  std_logic                    := 'X';             -- clk
 			reset_reset_n : in  std_logic                    := 'X';             -- reset_n
 			led_export    : out std_logic_vector(7 downto 0);                    -- export
