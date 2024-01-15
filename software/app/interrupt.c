@@ -21,23 +21,18 @@ static void init_interrupt_pio()
     IOWR_ALTERA_AVALON_PIO_IRQ_MASK(BP_SW_BASE,0x3F);
 
     //Reset the edge capture register
-    IOWR_ALTERA_AVALON_PIO_EDGE_CAP(BP_SW_BASE,0x0);
+    IOWR_ALTERA_AVALON_PIO_EDGE_CAP(BP_SW_BASE,0x3F);
 
     //Register the interrupt handler in the system  	
-#ifdef ALT_ENHANCED_INTERRUPT_API_PRESENT
-	alt_ic_isr_register(BP_SW_IRQ_INTERRUPT_CONTROLLER_ID,BP_SW_IRQ, irqhandler_bp_sw, edge_capture_ptr, 0x0);
-#else
-	alt_irq_register(BP_SW_IRQ,edge_capture_ptr,irqhandler_bp_sw ); 
-#endif
 	
 }
 
 static void chenillard(int temps)
 {
-    int led_data;
-    while (1)
-    {
-        led_data = 0x01;
+    // int led_data;
+    // while (1)
+    // {
+        int led_data = 0x01;
         IOWR_ALTERA_AVALON_PIO_DATA(LEDS_BASE, 0x01);
         usleep(temps);
 
@@ -47,7 +42,7 @@ static void chenillard(int temps)
             IOWR_ALTERA_AVALON_PIO_DATA(LEDS_BASE, led_data);
             usleep(temps);
         }
-    }
+/*     } */
 }
 
 static void arret_chenillard()
@@ -58,17 +53,18 @@ static void arret_chenillard()
 static void irqhandler_bp_sw (void * context, alt_u32 id)
 {
 	alt_u32 interrupt = IORD_ALTERA_AVALON_PIO_IRQ_MASK(BP_SW_BASE);
+	alt_u32 val = IORD_ALTERA_AVALON_PIO_EDGE_CAP(BP_SW_BASE);
     volatile int* edge_capture_ptr = (volatile int*) context;
     *edge_capture_ptr = IORD_ALTERA_AVALON_PIO_EDGE_CAP(BP_SW_IRQ);
-	switch (interrupt) 
+	switch (val) 
 	{
 		case 0x01:
-			//arret
-			arret_chenillard();
-		break;
-		case 0x02:
 			//lancement chenillard
 			chenillard(100000);
+		break;
+		case 0x02:
+			//arret
+			arret_chenillard();
 		break;
 		case 0x04:
 			//lancement chenillard Vitesse +
@@ -86,8 +82,11 @@ static void irqhandler_bp_sw (void * context, alt_u32 id)
 			//lancement chenillard Vitesse ++++
 			chenillard(20000);
 		break;
+		default :
+			IOWR_ALTERA_AVALON_PIO_DATA(LEDS_BASE, 0x0F);
+		break;
 	}		
-    IOWR_ALTERA_AVALON_PIO_EDGE_CAP(BP_SW_BASE,0);
+    IOWR_ALTERA_AVALON_PIO_EDGE_CAP(BP_SW_BASE,0x3F);
 
 }
 
@@ -96,12 +95,8 @@ static void irqhandler_bp_sw (void * context, alt_u32 id)
 int main()
 {
 	init_interrupt_pio();
-	
-#ifdef ALT_ENHANCED_INTERRUPT_API_PRESENT
 	alt_ic_isr_register(BP_SW_IRQ_INTERRUPT_CONTROLLER_ID,BP_SW_IRQ, irqhandler_bp_sw, NULL, NULL);
-#else
-	alt_irq_register(BP_SW_IRQ,NULL,irqhandler_bp_sw ); 
-#endif
+
 	while (1)
 	{
 		
