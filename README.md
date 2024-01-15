@@ -1,1 +1,6 @@
 # BOUHMIDI_lab1
+## Sketch de l'architecture
+
+Pour mettre en œuvre le 'LED chaser' décrit dans le Lab1, nous aurons besoin d'un environnement de développement Nios II, comprenant un processeur Nios II, un élément de mémoire pour stocker le programme, un bus Avalon pour la communication entre les différents composants, un module JTAG pour le débogage, ainsi que deux PIO, l'un dédié aux entrées pour les boutons et les switchs, et l'autre pour les sorties, représentant les LED. Ces composants permettront la création d'un système complet capable d'implémenter le chaser de LED avec la possibilité d'ajuster la vitesse à l'aide des boutons et des switchs, comme on peut le voir dans la figure qui suit :
+
+![image](https://github.com/ESN2024/BOUHMIDI_lab1/assets/144927751/bf559541-59b8-40cd-966e-a6438853dfff)
