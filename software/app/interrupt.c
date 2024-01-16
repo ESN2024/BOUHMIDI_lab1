@@ -84,7 +84,6 @@ static void irqhandler_bp_sw (void * context, alt_u32 id)
 		arret_chenillard();
 		
     IOWR_ALTERA_AVALON_PIO_EDGE_CAP(BP_SW_BASE,0x3F);
-
 }
 
 
