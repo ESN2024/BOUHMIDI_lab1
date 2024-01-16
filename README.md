@@ -10,6 +10,8 @@ Pour mettre en œuvre le 'LED chaser' décrit dans le Lab1, nous aurons besoin d
 ### Activation du chenillard avec interruption BP
 ![IMG_4626](https://github.com/ESN2024/BOUHMIDI_lab1/assets/144927751/55f8f93f-3ccd-4e19-9a9e-b295645df32e)
 ### Augmentation de vitesse avec les SW
+![IMG_4632](https://github.com/ESN2024/BOUHMIDI_lab1/assets/144927751/de930290-13ae-4665-a386-77f35da4eebf)
+
 
 
 
